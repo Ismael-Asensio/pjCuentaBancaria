@@ -254,15 +254,3 @@ Las pruebas cubren los siguientes casos:
 - Validación de transacciones (depósitos y retiros).
 - Consulta de saldo y historial de transacciones.
 
----
-
-## Contribuciones
-
-Si deseas contribuir, por favor, abre un **issue** o un **pull request** con tus mejoras o correcciones.
-
----
-
-## Licencia
-
-Este proyecto está bajo la licencia [MIT](LICENSE).
-
