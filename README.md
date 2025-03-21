@@ -200,6 +200,7 @@ La API ofrece los siguientes endpoints:
   "amount": 2000,
   "transactionDate": "2025-03-21T19:40:05.5400055Z",
   "bankAccountId": 1
+  "currentBalance": 3000
 }
 ```
 
@@ -245,6 +246,7 @@ La API ofrece los siguientes endpoints:
     "amount": 1500,
     "transactionDate": "2025-03-21T19:40:23.5931375Z",
     "accountNumber": "0659669741"
+    "currentBalance": 1500
   }
 ]
 ```
