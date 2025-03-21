@@ -1,6 +1,6 @@
 # API de Gestión de Cuentas Bancarias
 
-Esta es una API desarrollada en **.NET 8** que permite gestionar cuentas bancarias, realizar transacciones (depósitos y retiros), y consultar el saldo y el historial de transacciones. La API sigue las mejores prácticas de desarrollo y está diseñada para ser fácil de usar y extender.
+Esta es una API desarrollada en **.NET 8** que permite gestionar cuentas bancarias, realizar transacciones (depósitos y retiros) y consultar el saldo y el historial de transacciones. La API sigue las mejores prácticas de desarrollo y está diseñada para ser fácil de usar y extender.
 
 ---
 
@@ -35,62 +35,92 @@ Esta es una API desarrollada en **.NET 8** que permite gestionar cuentas bancari
    ```bash
    git clone https://github.com/tu-usuario/pjCuentaBancaria.git
    cd pjCuentaBancaria
+   ```
 
+2. Instala las dependencias necesarias:
+
+   ```bash
    Install-Package Microsoft.EntityFrameworkCore.InMemory
+   ```
 
-   ya que use una BD in memory para el ejemplo
+   > **Nota:** Se usa una base de datos **In-Memory** para este ejemplo.
 
-   Uso de la API
+---
+
+## Uso de la API
+
 La API ofrece los siguientes endpoints:
 
-Clientes
-Crear un cliente:
+### Clientes
 
-Copy
-POST /api/customer
-Obtener un cliente por ID:
+- **Crear un cliente:**
 
-Copy
-GET /api/customer/{id}
-Cuentas Bancarias
-Crear una cuenta bancaria:
+  ```http
+  POST /api/customer
+  ```
 
-Copy
-POST /api/bankaccount/crear
-Consultar el saldo de una cuenta:
+- **Obtener un cliente por ID:**
 
-Copy
-GET /api/bankaccount/{accountNumber}/balance
-Transacciones
-Realizar un depósito:
+  ```http
+  GET /api/customer/{id}
+  ```
 
-Copy
-POST /api/transaction/deposit
-Realizar un retiro:
+### Cuentas Bancarias
 
-Copy
-POST /api/transaction/withdraw
-Obtener el historial de transacciones:
+- **Crear una cuenta bancaria:**
 
-Copy
-GET /api/transaction/{accountNumber}/history
-Ejemplos de Solicitudes y Respuestas
-Clientes
-Crear un Cliente
-Solicitud:
+  ```http
+  POST /api/bankaccount/crear
+  ```
 
-json
-Copy
+- **Consultar el saldo de una cuenta:**
+
+  ```http
+  GET /api/bankaccount/{accountNumber}/balance
+  ```
+
+### Transacciones
+
+- **Realizar un depósito:**
+
+  ```http
+  POST /api/transaction/deposit
+  ```
+
+- **Realizar un retiro:**
+
+  ```http
+  POST /api/transaction/withdraw
+  ```
+
+- **Obtener el historial de transacciones:**
+
+  ```http
+  GET /api/transaction/{accountNumber}/history
+  ```
+
+---
+
+## Ejemplos de Solicitudes y Respuestas
+
+### Clientes
+
+#### Crear un Cliente
+
+**Solicitud:**
+
+```json
 {
   "name": "John Doe",
   "dateOfBirth": "1990-01-01",
   "gender": "Male",
   "income": 50000
 }
-Respuesta:
+```
 
-json
-Copy
+**Respuesta:**
+
+```json
 {
   "id": 1,
   "name": "John Doe",
@@ -98,11 +128,13 @@ Copy
   "gender": "Male",
   "income": 50000
 }
-Obtener un Cliente por ID
-Respuesta:
+```
 
-json
-Copy
+#### Obtener un Cliente por ID
+
+**Respuesta:**
+
+```json
 {
   "id": 1,
   "name": "John Doe",
@@ -110,71 +142,86 @@ Copy
   "gender": "Male",
   "income": 50000
 }
-Cuentas Bancarias
-Crear una Cuenta Bancaria
-Solicitud:
+```
 
-json
-Copy
+### Cuentas Bancarias
+
+#### Crear una Cuenta Bancaria
+
+**Solicitud:**
+
+```json
 {
   "balance": 1000,
   "customerId": 1
 }
-Respuesta:
+```
 
-json
-Copy
+**Respuesta:**
+
+```json
 {
   "accountNumber": "1234567890",
   "balance": 1000,
   "customerId": 1
 }
-Consultar el Saldo de una Cuenta
-Respuesta:
+```
 
-json
-Copy
+#### Consultar el Saldo de una Cuenta
+
+**Respuesta:**
+
+```json
 {
   "balance": 1000
 }
-Transacciones
-Realizar un Depósito
-Solicitud:
+```
 
-json
-Copy
+### Transacciones
+
+#### Realizar un Depósito
+
+**Solicitud:**
+
+```json
 {
   "accountNumber": "1234567890",
   "amount": 500
 }
-Respuesta:
+```
 
-json
-Copy
+**Respuesta:**
+
+```json
 {
   "message": "Depósito realizado con éxito."
 }
-Realizar un Retiro
-Solicitud:
+```
 
-json
-Copy
+#### Realizar un Retiro
+
+**Solicitud:**
+
+```json
 {
   "accountNumber": "1234567890",
   "amount": 200
 }
-Respuesta:
+```
 
-json
-Copy
+**Respuesta:**
+
+```json
 {
   "message": "Retiro realizado con éxito."
 }
-Obtener el Historial de Transacciones
-Respuesta:
+```
 
-json
-Copy
+#### Obtener el Historial de Transacciones
+
+**Respuesta:**
+
+```json
 [
   {
     "type": "Depósito",
@@ -189,16 +236,33 @@ Copy
     "fecha": "2025-03-21T18:30:10.1234567Z"
   }
 ]
-Pruebas Unitarias
+```
+
+---
+
+## Pruebas Unitarias
+
 Para ejecutar las pruebas unitarias, usa el siguiente comando:
 
-bash
-Copy
-dotnet test
+```bash
+ dotnet test
+```
+
 Las pruebas cubren los siguientes casos:
 
-Creación de clientes y cuentas bancarias.
+- Creación de clientes y cuentas bancarias.
+- Validación de transacciones (depósitos y retiros).
+- Consulta de saldo y historial de transacciones.
 
-Validación de transacciones (depósitos y retiros).
+---
 
-Consulta de saldo y historial de transacciones.
+## Contribuciones
+
+Si deseas contribuir, por favor, abre un **issue** o un **pull request** con tus mejoras o correcciones.
+
+---
+
+## Licencia
+
+Este proyecto está bajo la licencia [MIT](LICENSE).
+
