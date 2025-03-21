@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using pjCuentaBancaria.Repositories;
 using pjCuentaBancaria.Services;
 
 namespace pjCuentaBancaria.Controllers
@@ -9,10 +10,12 @@ namespace pjCuentaBancaria.Controllers
     public class TransactionController : ControllerBase
     {
         private readonly ITransactionService _transactionService;
+        private readonly IBankAccountRepository _bankAccountRepository;
 
-        public TransactionController(ITransactionService transactionService)
+        public TransactionController(ITransactionService transactionService, IBankAccountRepository bankAccountRepository)
         {
             _transactionService = transactionService;
+            _bankAccountRepository = bankAccountRepository;
         }
 
         [HttpPost("deposito")]
@@ -20,14 +23,19 @@ namespace pjCuentaBancaria.Controllers
         {
             var transaction = await _transactionService.DepositAsync(request.AccountNumber, request.Amount);
 
-            // Respuesta limpia
+            // Obtener el saldo actual de la cuenta
+            var account = await _bankAccountRepository.GetBankAccountByNumberAsync(request.AccountNumber);
+            decimal currentBalance = account?.Balance ?? 0;
+
+            // Respuesta limpia con saldo actual
             var response = new
             {
                 transaction.Id,
                 transaction.Type,
                 transaction.Amount,
                 transaction.TransactionDate,
-                transaction.BankAccountId
+                transaction.BankAccountId,
+                CurrentBalance = currentBalance // Saldo actual
             };
 
             return Ok(response);
@@ -38,14 +46,19 @@ namespace pjCuentaBancaria.Controllers
         {
             var transaction = await _transactionService.WithdrawAsync(request.AccountNumber, request.Amount);
 
-            // Respuesta limpia
+            // Obtener el saldo actual de la cuenta
+            var account = await _bankAccountRepository.GetBankAccountByNumberAsync(request.AccountNumber);
+            decimal currentBalance = account?.Balance ?? 0;
+
+            // Respuesta limpia con saldo actual
             var response = new
             {
                 transaction.Id,
                 transaction.Type,
                 transaction.Amount,
                 transaction.TransactionDate,
-                transaction.BankAccountId
+                transaction.BankAccountId,
+                CurrentBalance = currentBalance // Saldo actual
             };
 
             return Ok(response);
