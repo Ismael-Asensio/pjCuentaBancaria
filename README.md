@@ -111,10 +111,11 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "name": "John Doe",
-  "dateOfBirth": "1990-01-01",
-  "gender": "Male",
-  "income": 50000
+  "id": 0,
+  "name": "Juan",
+  "dateOfBirth": "2025-03-21T19:39:24.711Z",
+  "gender": "Hombre",
+  "income": 0
 }
 ```
 
@@ -123,10 +124,10 @@ La API ofrece los siguientes endpoints:
 ```json
 {
   "id": 1,
-  "name": "John Doe",
-  "dateOfBirth": "1990-01-01T00:00:00",
-  "gender": "Male",
-  "income": 50000
+  "name": "Juan",
+  "dateOfBirth": "2025-03-21T19:39:24.711Z",
+  "gender": "Hombre",
+  "income": 0
 }
 ```
 
@@ -137,10 +138,10 @@ La API ofrece los siguientes endpoints:
 ```json
 {
   "id": 1,
-  "name": "John Doe",
-  "dateOfBirth": "1990-01-01T00:00:00",
-  "gender": "Male",
-  "income": 50000
+  "name": "Juan",
+  "dateOfBirth": "2025-03-21T19:39:24.711Z",
+  "gender": "Hombre",
+  "income": 0
 }
 ```
 
@@ -161,7 +162,7 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "accountNumber": "1234567890",
+  "accountNumber": "0659669741",
   "balance": 1000,
   "customerId": 1
 }
@@ -185,8 +186,8 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "accountNumber": "1234567890",
-  "amount": 500
+  "accountNumber": "0659669741",
+  "amount": 2000
 }
 ```
 
@@ -194,7 +195,11 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "message": "Depósito realizado con éxito."
+  "id": 1,
+  "type": "Deposito",
+  "amount": 2000,
+  "transactionDate": "2025-03-21T19:40:05.5400055Z",
+  "bankAccountId": 1
 }
 ```
 
@@ -204,8 +209,8 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "accountNumber": "1234567890",
-  "amount": 200
+  "accountNumber": "0659669741",
+  "amount": 1500
 }
 ```
 
@@ -213,7 +218,11 @@ La API ofrece los siguientes endpoints:
 
 ```json
 {
-  "message": "Retiro realizado con éxito."
+  "id": 1,
+  "type": "Retiro",
+  "amount": 1500,
+  "transactionDate": "2025-03-21T19:40:05.5400055Z",
+  "bankAccountId": 1
 }
 ```
 
@@ -224,16 +233,18 @@ La API ofrece los siguientes endpoints:
 ```json
 [
   {
-    "type": "Depósito",
-    "amount": 500,
-    "saldoPosterior": 1500,
-    "fecha": "2025-03-21T18:29:53.5828027Z"
+    "id": 1,
+    "type": "Deposito",
+    "amount": 2000,
+    "transactionDate": "2025-03-21T19:40:05.5400055Z",
+    "accountNumber": "0659669741"
   },
   {
+    "id": 2,
     "type": "Retiro",
-    "amount": 200,
-    "saldoPosterior": 1300,
-    "fecha": "2025-03-21T18:30:10.1234567Z"
+    "amount": 1500,
+    "transactionDate": "2025-03-21T19:40:23.5931375Z",
+    "accountNumber": "0659669741"
   }
 ]
 ```
