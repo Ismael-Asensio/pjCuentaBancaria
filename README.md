@@ -16,7 +16,6 @@ Esta es una API desarrollada en **.NET 8** que permite gestionar cuentas bancari
 5. [Ejemplos de Solicitudes y Respuestas](#ejemplos-de-solicitudes-y-respuestas)
 6. [Pruebas Unitarias](#pruebas-unitarias)
 7. [Contribuciones](#contribuciones)
-8. [Licencia](#licencia)
 
 ---
 
